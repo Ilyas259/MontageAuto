@@ -1,0 +1,108 @@
+# Profil "natural" — qualité maximale, pipeline complet
+# Mode de production par défaut
+
+agents:
+  transcription:
+    model_size: large-v3
+    language: fr
+    temperature: 0.0
+    beam_size: 5
+    vad_mode: balanced
+    vad_sensitivity: 0.5
+    min_silence_duration: 0.5
+    word_timestamps: true
+    highlight_words: true
+    max_line_width: 42
+    max_line_count: 2
+    condition_on_previous_text: true
+    batch_size: 8
+    compute_type: auto
+
+  derushage:
+    model: deepseek
+    temperature: 0.3
+    top_p: 0.9
+    max_output_tokens: 2048
+    context_window: 16000
+    max_cut_duration: 60
+    min_sentence_duration: 2.0
+    keep_filler_words: false
+    remove_uhs_and_ums: true
+    preserve_questions: true
+    summary_style: natural
+    highlight_best_moments: true
+    system_prompt: "Tu es un monteur vidéo expert. Analyse le transcript et génère une cut_list optimisée. Conserve le flow narratif et supprime les hésitations."
+
+  montage:
+    renderer: hyperframes
+    resolution: 1080p
+    aspect_ratio: "16:9"
+    fps: 30
+    output_format: mp4
+    codec: h264
+    bitrate: auto
+    subtitles_enabled: true
+    subtitle_style: modern
+    subtitle_font_size: 24
+    subtitle_position: bottom
+    subtitle_background: shadow
+    transition_style: dissolve
+    transition_duration: 0.3
+    broll_enabled: true
+    broll_source: auto
+    broll_count_per_minute: 2
+    color_grade: cinematic
+    enable_ken_burns: false
+    speed_control: auto
+    intro_enabled: false
+    outro_enabled: false
+
+  audio:
+    music_enabled: true
+    music_genre: cinematic
+    music_mood: inspiring
+    music_volume: 0.15
+    music_fade_duration: 1.0
+    ducking_enabled: true
+    ducking_level: 0.3
+    ducking_attack: 0.1
+    ducking_release: 0.5
+    sfx_enabled: true
+    sfx_volume: 0.5
+    sfx_categories: "transitions,emphasis,ambient"
+    voiceover_enabled: false
+    normalize_audio: true
+    target_loudness: -14
+    background_noise_reduction: true
+    noise_reduction_level: 0.3
+    fade_in_duration: 0.5
+    fade_out_duration: 0.5
+
+  qualite:
+    max_iterations: 3
+    strictness: medium
+    check_visual_quality: true
+    check_audio_sync: true
+    check_subtitle_accuracy: true
+    check_branding_colors: false
+    check_every_frame: false
+    frame_sample_rate: 30
+    min_confidence_score: 0.7
+    auto_correct_minor_issues: true
+    max_correction_attempts: 3
+    report_format: detailed
+
+  validation:
+    require_approval: true
+    notify_on_complete: true
+    notify_method: telegram
+    auto_approve_if_no_response: false
+    approval_timeout_hours: 48
+    export_on_approval: true
+    export_destination: local
+    keep_intermediate_files: false
+
+pipeline:
+  mode: api
+  timeout_per_agent: 1800  # 30 min par agent
+  output_quality: final

@@ -1,0 +1,58 @@
+# Agent #3 — Montage & Animation
+# Configuration externalisable du pipeline de montage
+
+montage:
+  # ── Résolution & FPS ──
+  output_resolution: "1920x1080"
+  fps: 30
+
+  # ── Transitions ──
+  transition_default: "cut"       # cut | fade | slide | zoom
+  transition_duration: 0.3        # secondes
+
+  # ── Sous-titres ──
+  subtitle_style: "block"         # karaoke | block | none
+  subtitle_font: "Inter"
+  subtitle_font_size: 32
+  subtitle_color: "#FFFFFF"
+  subtitle_stroke_color: "#000000"
+  subtitle_stroke_width: 1
+  subtitle_position: "bottom"
+  subtitle_margin_bottom: 60
+  karaoke_highlight_color: "#FFD700"
+  karaoke_advance_mode: "word"    # word | character
+
+  # ── B-roll ──
+  b_roll_transition: "fade"       # Comment les B-rolls apparaissent
+  min_broll_duration: 2.0         # Durée minimum B-roll (secondes)
+  max_broll_duration: 12.0        # Durée maximum B-roll (secondes)
+  broll_asset_dirs:
+    - "./assets/broll"
+    - "./assets/images"
+
+  # ── Facecam ──
+  facecam_position: "bottom-right"  # bottom-right | bottom-left | top-right | top-left
+  facecam_size: 0.25               # 25% de l'écran
+  facecam_corner_radius: 12
+  facecam_shadow: true
+
+  # ── Encodage ──
+  codec: "h264"                    # h264 | h265 | h264_nvenc | h265_nvenc
+  crf: 18
+  preset: "medium"                 # ultrafast | fast | medium | slow
+  audio_codec: "aac"
+  audio_bitrate: "192k"
+
+  # ── Preview ──
+  preview_resolution: "640x360"
+  preview_fps: 15
+  preview_scale: 0.5
+
+  # ── Cache & workdir ──
+  cache_dir: "./.cache/agent3_montage"
+  clean_cache_after: false
+
+  # ── Boucle qualité ──
+  quality_loop_endpoint: "http://localhost:8085/api/quality"
+  quality_loop_api_key: ""
+  quality_max_iterations: 3

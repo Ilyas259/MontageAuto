@@ -1,0 +1,25 @@
+# Agent #3 — Montage & Animation
+# Dépendances Python
+
+# Core
+pydantic>=2.7.0<3.0.0
+pyyaml>=6.0
+
+# HTTP (pour Hyperframes API et boucle qualité)
+httpx>=0.27.0
+
+# CLI
+# (stdlib argparse, pas de dépendance externe)
+
+# ── Dépendances optionnelles ──
+
+# Pour le renderer Remotion (fallback OSS) :
+# Node.js 20+ installé séparément
+# npm install -g @remotion/renderer
+
+# Pour le renderer Hyperframes (canonique) :
+# Service Hyperframes tournant sur localhost:3000
+# Licence payante — https://agen.com/hyperframes
+
+# Pour le rendu FFmpeg-only (fallback ultime) :
+# ffmpeg installé sur le système

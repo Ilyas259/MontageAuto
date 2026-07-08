@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+*.egg
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Secrets
+*.secret.yaml
+secrets.yaml
+.env
+*.key
+
+# Backend
+backend/config/user/*.json
+backend/config/run/*.json
+
+# Outputs
+outputs/
+temp/
+tmp/
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.wav
+*.mp3
+*.flac
+
+# Docker
+.docker/
+*.log
+
+# Streamlit
+.streamlit/

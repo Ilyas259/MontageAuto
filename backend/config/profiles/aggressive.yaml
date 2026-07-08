@@ -1,0 +1,109 @@
+# Profil "aggressive" — vitesse maximale, qualité réduite
+# Convient pour les tests rapides et les previews
+
+agents:
+  transcription:
+    model_size: small
+    language: fr
+    temperature: 0.0
+    beam_size: 3
+    vad_mode: aggressive
+    vad_sensitivity: 0.3
+    min_silence_duration: 0.3
+    word_timestamps: false
+    highlight_words: false
+    max_line_width: 42
+    max_line_count: 2
+    condition_on_previous_text: false
+    batch_size: 16
+    compute_type: int8
+
+  derushage:
+    model: deepseek
+    temperature: 0.5
+    top_p: 0.95
+    max_output_tokens: 1024
+    context_window: 8000
+    max_cut_duration: 45
+    min_sentence_duration: 1.0
+    keep_filler_words: false
+    remove_uhs_and_ums: true
+    preserve_questions: false
+    summary_style: concise
+    highlight_best_moments: false
+    system_prompt: "Tu es un assistant de montage rapide. Nettoie le transcript et extrait l'essentiel en étant agressif sur les coupes."
+
+  montage:
+    renderer: ffmpeg
+    resolution: 720p
+    aspect_ratio: "16:9"
+    fps: 24
+    output_format: mp4
+    codec: h264
+    bitrate: 5M
+    subtitles_enabled: false
+    subtitle_style: minimal
+    subtitle_font_size: 20
+    subtitle_position: bottom
+    subtitle_background: shadow
+    transition_style: cut
+    transition_duration: 0.0
+    broll_enabled: false
+    broll_source: none
+    broll_count_per_minute: 0
+    color_grade: none
+    enable_ken_burns: false
+    speed_control: none
+    intro_enabled: false
+    outro_enabled: false
+
+  audio:
+    music_enabled: true
+    music_genre: lo-fi
+    music_mood: calm
+    music_volume: 0.3
+    music_fade_duration: 0.5
+    ducking_enabled: true
+    ducking_level: 0.5
+    ducking_attack: 0.05
+    ducking_release: 0.3
+    sfx_enabled: false
+    sfx_volume: 0.0
+    sfx_categories: ""
+    voiceover_enabled: false
+    normalize_audio: false
+    target_loudness: -14
+    background_noise_reduction: true
+    noise_reduction_level: 0.2
+    fade_in_duration: 0.2
+    fade_out_duration: 0.2
+
+  qualite:
+    max_iterations: 1
+    strictness: low
+    check_visual_quality: false
+    check_audio_sync: true
+    check_subtitle_accuracy: false
+    check_branding_colors: false
+    check_every_frame: false
+    frame_sample_rate: 60
+    min_confidence_score: 0.5
+    auto_correct_minor_issues: false
+    max_correction_attempts: 1
+    report_format: summary
+
+  validation:
+    require_approval: false
+    notify_on_complete: false
+    notify_method: telegram
+    auto_approve_if_no_response: true
+    auto_approve_delay_hours: 1
+    approval_timeout_hours: 24
+    export_on_approval: true
+    export_destination: local
+    keep_intermediate_files: false
+
+pipeline:
+  mode: local
+  timeout_per_agent: 600  # 10 min par agent
+  output_quality: draft

@@ -1,0 +1,64 @@
+# Profil "custom" — template vide pour vos réglages personnalisés
+# Dupliquez et renommez ce fichier pour créer vos propres profils
+
+agents:
+  transcription:
+    model_size: medium
+    language: fr
+    temperature: 0.0
+    beam_size: 5
+    vad_mode: balanced
+    vad_sensitivity: 0.5
+    min_silence_duration: 0.5
+    word_timestamps: true
+    max_line_width: 42
+    max_line_count: 2
+    batch_size: 8
+    compute_type: auto
+
+  derushage:
+    model: deepseek
+    temperature: 0.3
+    top_p: 0.9
+    max_output_tokens: 2048
+    context_window: 16000
+    max_cut_duration: 60
+    keep_filler_words: false
+    remove_uhs_and_ums: true
+    summary_style: natural
+
+  montage:
+    renderer: hyperframes
+    resolution: 1080p
+    aspect_ratio: "16:9"
+    fps: 30
+    subtitles_enabled: true
+    subtitle_style: modern
+    transition_style: dissolve
+    broll_enabled: true
+    color_grade: none
+
+  audio:
+    music_enabled: true
+    music_volume: 0.15
+    ducking_enabled: true
+    ducking_level: 0.3
+    sfx_enabled: true
+    normalize_audio: true
+    target_loudness: -14
+
+  qualite:
+    max_iterations: 2
+    strictness: medium
+    check_every_frame: false
+    auto_correct_minor_issues: true
+
+  validation:
+    require_approval: true
+    notify_on_complete: true
+    export_on_approval: true
+
+pipeline:
+  mode: auto
+  timeout_per_agent: 1200
+  output_quality: final
